@@ -5,13 +5,13 @@
 
 # TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
 
-Documentation	
+Documentation Project Test scenario. CRUD Operation: Create, Read, Update, Delete	
 
 # TODO: Write Precondition, Postcondition, Tags
 
-Pre Condition	 
-Post Condition	
-Tags
+Pre Condition There should be no existing projects with the same name as the test project.
+Post Condition The test project should be successfully created, updated, and deleted.
+Tags project_creation
 
 #******************* Common Variables ********************
 
@@ -21,6 +21,12 @@ Tags
 
 # TODO: Write Project creation field variables
 
+LoginUrl = https://gitlab.com/users/sign_in
+ValidUsername = TestUser123
+ValidPassword = Password123
+BlankProjectName = Blank Project
+TemplateProjectName = testProjectTemplate
+UpdatedProjectName = testProjectTemplate1
 
 
 #******************** Test Cases *************************
@@ -31,16 +37,71 @@ Tags
 
 # Positive Test examples are below write test process steps for each below test case
 
-	Create blank project
-	Navigate
-	Insert  project name  Project_Nam
- 	Create template project 
-	Update name of template project
-	Delete template project
-	Valide that message is showing Project 'First project ' was successfully created.
+Create Blank Project
+	Navigate To Login Page  LoginUrl
+    Input Username  TestUser123
+    Input Password  Password123
+    Submit Login Form
+	Navigate to the Projects menu.
+	Click on the "New project" button.
+	Select the option to create a blank project.
+	Enter "Blank project" as the project name.
+	Click on the "Create project" button.
+	Verify that you receive a notification that the project was created successfully.
+	
+
+Create Project From Template
+	Navigate To Login Page  LoginUrl
+    Input Username  TestUser123
+    Input Password  Password123
+    Submit Login Form
+	Navigate to the Projects menu.
+	Click on the "New project" button.
+	Select the option to create a project from a template.
+	Click on the "Use template" button under the Pages/Bridgetown template.
+	Enter "testProjectTemplate" as the project name.
+	Click on the "Create project" button.
+	Verify that you receive a notification that the project was created successfully.
+	
+Change Project Name
+	Navigate To Login Page  LoginUrl
+    Input Username  TestUser123
+    Input Password  Password123
+    Submit Login Form
+	Navigate to the Projects menu.
+	Select the "testProjectTemplate" project from the list.
+	Select the "Settings" option from the left-hand navigation menu.
+	Change the project name to "testProjectTemplate1".
+	Click on the "Save changes" button.
+	Verify that the project name has been updated.
+	
+Delete project
+	Navigate To Login Page  LoginUrl
+    Input Username  TestUser123
+    Input Password  Password123
+    Submit Login Form
+	Navigate to the Projects menu.
+	Select the "testProjectTemplate1" project from the list.
+	Select the "Settings" option from the left-hand navigation menu.
+	Click on the "Expand" button under the "Advanced" section.
+	Scroll down the page and copy the text provided under "Delete this project".
+	Click on the "Delete project" button.
+	Paste the copied text into the input field.
+	Click on the "Yes, delete project" button.
+	Verify that the project has been deleted.
 
 # Negative Test examples are below write test process steps for each below test case
 
-	Create a blank project with the previous same name
+Create Existing Project
+	Navigate To Login Page  LoginUrl
+    Input Username  TestUser123
+    Input Password  Password123
+    Submit Login Form
+	Navigate to the Projects menu.
+	Click on the "New project" button.
+	Select the option to create a blank project.
+	Enter "Blank project" as the project name.
+	Click on the "Create project" button.
+	Verify that you receive an error message stating that the project namespace name, name, and path have already been taken.
 
 

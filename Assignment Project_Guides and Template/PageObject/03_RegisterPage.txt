@@ -5,23 +5,32 @@
 
 # TODO: Write Documentation e.g. User Registration Test scenario with verification, valid and invalid credentials.
 
-Documentation	
+Documentation	Registration Test scenarios with verification, valid and invalid credentials.
+
+
 
 # TODO: Write Precondition, Postcondition, Tags
 
-Pre Condition	
-Post Condition	
-Tags
+Pre	Condition	User is not registered in the GitLab system.
+Post Condition	User account is created with valid credentials and can be used for further testing.
+Tags	Registration, Positive, Negative
 
 #******************* Common Variables ********************
 
 *** Variables ***
 
+LoginUrl = https://gitlab.com/users/sign_up
+ValidUsername = TestUser123
+ValidPassword = Password123
+InvalidUsername = ExistingUser
+InvalidPassword = Pass123
+InvalidEmail = invalidemail.com
+
 # NOTE: Please Remove your login credential before uploading Assignments
 
 # TODO: Write Registration field variables
 
-LoginUrl = https://gitlab.com/users/sign_up
+RegisterURL = https://gitlab.com/users/sign_up
 
 
 
@@ -31,16 +40,66 @@ LoginUrl = https://gitlab.com/users/sign_up
 
 # TODO: Write Positive and Negative Test Cases and Test Process steps
 
+Register user with valid username and password 
+- Go to the Sign up page of the GitLab application
+- Enter a First name
+- Enter a Last name
+- Enter a valid username
+- Enter a valid email address
+- Enter a valid password 
+- Verify the reCAPTCHA
+- Click on the Register button
+- Check the verification code that arrives in the email.
+- Enter the verification code received in the email on the confirmation page.
+- Verify that the user is redirected to the GitLab homepage
+- Remember the credentials which are used for registration, as they can be used for further testing
 # Positive Test examples are below write test process steps for each below test case
 
-	Register user with valid username and password 
-	- Remember credentials which you are going to use for whole application testing 
 
 # Negative Test examples are below write test process steps for each below test case
+Register user with same above username
+- Go to the Sign up page of the GitLab application
+- Enter a First name
+- Enter a Last name
+- Enter a valid username
+- Enter a valid email address
+- Enter a valid password 
+- Verify the reCAPTCHA
+- Click on the Register button
+- Verify that an error message is displayed indicating that the username is already taken
 
-	Register user with same above username,
-		...empty password,
-		...invalid email,
-		...Without recaptcha,
+Register user with empty password
+- Register user with same above username
+- Enter a First name
+- Enter a Last name
+- Enter a valid email address
+- Enter a valid username 
+- Leave the password field empty
+- Verify the reCAPTCHA
+- Click on the Register button
+- Verify that an error message is displayed indicating that the password minimum length is 8 characters.
+
+Register user with invalid email
+- Register user with same above username
+- Enter a First name
+- Enter a Last name
+- Enter an invalid email address 
+- Enter a valid username 
+- Enter a valid password 
+- Verify the reCAPTCHA
+- Click on the Register button
+- Verify that an error message is displayed indicating that please provide a valid email address.
+
+Register user without recaptcha
+- Register user with same above username
+- Enter a First name
+- Enter a Last name
+- Enter a valid email address
+- Enter a valid username 
+- Enter a valid password 
+- Click on the Register button without verifying the reCAPTCHA
+- Verify that an error message is displayed indicating that the reCAPTCHA is required.
+	
+	
 
 

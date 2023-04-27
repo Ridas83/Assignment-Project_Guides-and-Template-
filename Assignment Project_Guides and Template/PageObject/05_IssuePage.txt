@@ -6,9 +6,10 @@ Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
 
 # TODO: Write Precondition and Postcondition, Tags 
 
-Pre Condition	Tips: Project must be created by the user before 
-Post Condition	
-Tags
+
+Pre Condition Tips: The user must have access to the application and be logged in
+Post Condition Issues created during the test case should be deleted
+Tags issue_creation
 
 #******************* Common Variables ********************
 
@@ -19,7 +20,12 @@ Tags
 
 # TODO: Write Issue creation field variables, Updated name of the issue
 
-
+LoginUrl = https://gitlab.com/users/sign_up
+Username TestUser123
+Password Password123
+ProjectName test project
+Title Login button not working on mobile devices!
+Description When trying to log in to the website using a mobile device, the login button does not respond when clicked.
 
 #******************** Test Cases *************************
 
@@ -29,7 +35,52 @@ Tags
 
 # Positive Test examples are below write test process steps for each below test case
 
-	Create issue,
- 	Update name of issue, 
-	Create second issue with privious updated name
-    Delete first issue
+Create issue
+	Navigate To Login Page  LoginUrl
+    Input Username  TestUser123
+    Input Password  Password123
+    Submit Login Form
+	Navigate to the Projects menu.
+	Click on the "New project" button.
+	Select the option to create a blank project.
+	Enter "test project" as the project name.
+	Click on the "Create project" button.
+	Verify that you receive a notification that the project was created successfully.
+	Select "Issues" from the left menu.
+	Click on "Select project to create issue" button.
+	Select "Blank project" from the list.
+	Write "Login button not working on mobile devices" in the "Title" field.
+	Write "When trying to log in to the website using a mobile device, the login button does not respond when clicked." in the "Description" field.
+	Click on "Create issue" button.
+	Verify that the created issue is listed under "Issues" section.
+
+Update name of issue 
+	Navigate to the Projects menu.
+	Select the "test project" project from the list.
+	Select "Issues" from the left menu.
+	Select the created issue "Login button not working on mobile devices".
+	Click on "Edit" button.
+	Add an exclamation mark (!) to the end of the text in the first input field, where it says "Login button not working on mobile devices".
+	Click on "Save changes" button.
+	Verify that the issue name has been updated.
+	
+Create second issue with privious updated name
+	Navigate to the Projects menu.
+	Select the "test project" project from the list.
+	Select "Issues" from the left menu.
+	Click on "Select project to create issue" button.
+	Select "Blank project" from the list.
+	Write "Login button not working on mobile devices!" in the "Title" field.
+	Write "When trying to log in to the website using a mobile device, the login button does not respond when clicked." in the "Description" field.
+	Click on "Create issue" button.
+	Verify that the created issue is listed under "Issues" section.
+
+Delete first issue
+	Navigate to the Projects menu.
+	Select the "test project" project from the list.
+	Select "Issues" from the left menu.
+	Select the created issue "Login button not working on mobile devices!".
+	Click on the "Issue actions" button (three dots) at the top right corner.
+	Select "Delete issue" from the list.
+	Click on the "Delete issue" button in the alert box.
+	Verify that the issue has been deleted.
